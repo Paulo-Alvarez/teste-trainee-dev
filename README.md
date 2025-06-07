@@ -47,7 +47,8 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 9.  **O botão “Editar” está desalinhado e deve ser posicionado ao lado do botão “Remover”:** Esse problema se encontrava no arquivo **todo-item.component.css** e ocorria porque os botões “Editar” e “Remover” não estavam agrupados e alinhados corretamente. Foi corrigido ao aplicar **display: flex, align-items: center e justify-content: space-between** no container **.todo-item**.
 10.  **O botão “Remover” deve ter a cor vermelha para indicar uma ação destrutiva:** Esse erro se apresentava por conta do arquivo **todo-item.component.html** que em seu código determinava que a cor da classe **todo-item_delete** deveria ser preto. Alterei para vermelho e funcionou.
 11.  **A lista de tarefas não apresenta uma barra de rolagem quando o número de itens ultrapassa a altura do painel, impedindo a visualização de todas as tarefas:** Problema havia sido solucionado anteriormente. Foi necessário colocar o trecho **overflow-y: auto;** na classe **.todo-list_container** que está no arquivo **todo.component.css**.
-12.  **Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista:** Também já havia resolvido essa questão anteriormente ao adicionar uma verificação para evitar a criação de tarefas com título vazio (**if (!this.newTaskTitle.trim()) return;**).
+12.  **Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista:** Também já havia resolvido essa questão anteriormente ao adicionar uma verificação para evitar a criação de tarefas com título vazio ou com apenas espaços (**if (!this.newTaskTitle.trim()) return;**).
+13.  **Digitar apenas espaços no campo “Título da Tarefa” e salvar também está adicionando um item em branco:** Mesma explicação e solução do problema anterior.
 
 ---
 
