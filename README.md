@@ -24,7 +24,7 @@ Após isso, a aplicação ficou diponível na rota http://localhost:4200/ mas ap
 
 Logo, comecei a investigar o que poderia estar causando isso. Identifiquei que no arquivo **header.components.ts** estava faltando a letra **r** nessa linha de código: **export class HeadeComponent implements OnInit.**
 
-Outro problema que estava impedindo o programa de compilar era que faltava a importação do **TodoService** no arquivo **meu new-task.component.ts**, adicionei **import { TodoService } from '../../shared/services/todo.service';** para mitigar esse problema. *Aqui também já verifiquei a duplicação de this.todoService.addTodo(newTodo), mas optei por corrigir esse bug na próxima etapa*.
+Outro problema que estava impedindo o programa de compilar era que faltava a importação do **TodoService** no arquivo **new-task.component.ts**, adicionei **import { TodoService } from '../../shared/services/todo.service';** para mitigar esse problema. *Aqui também já verifiquei a duplicação de this.todoService.addTodo(newTodo), mas optei por corrigir esse bug na próxima etapa*.
 
 Por fim, também foi necessário instalar o FontAwesome no terminal porque seus ícones estão sendo usados no projeto.
 
@@ -34,10 +34,10 @@ Após isso, os erros iniciais foram todos **resolvidos.**
 
 ## 4. Relatório de Correção de Bugs:
 
-Nessa sessão listo os Bugs, e o que foi necessário para resolve-los:
+Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 
-1.  **Ao clicar no botão “Salvar”, a tarefa está sendo adicionada duas vezes:** Esse problema foi ocasionado porque o médodo **addTask()** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
-2.  **Implementar todas as correções e melhorias** detalhadas na lista de requisitos técnicos abaixo.
+1.  **Ao clicar no botão “Salvar”, a tarefa estava sendo adicionada duas vezes** Esse problema ocorreu porque o método **addTask()** que está no arquivo **new-task.component.ts** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
+2.  **Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5):** Esse bug estava sendo ocasionado por causa do trecho **if (this.count > 0) return;** que estava impedindo que o botão funcionasse mais de uma vez. Além disso, retirei o trecho **count = 0;** que se tornou desnecessário e adicionei uma verificação para evitar a criação de tarefas com título vazio (**if (!this.newTaskTitle.trim()) return;**).
 3.  **Entregar o projeto final** seguindo as instruções de entrega.
 
 ---
