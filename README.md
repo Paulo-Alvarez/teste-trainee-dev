@@ -41,6 +41,7 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 3.  **O texto do botão de limpar todas as tarefas não está em português:** Esse problema estava no arquivo **todo.components.ts** e acontecia causa do trecho **return 'Clear All'** que estava no método **get labelClearAll()**. A solução foi simplesmente traduzir o trecho para o português.
 4.  **O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas:** A problemática estava no trecho **{{ showCompletedTasks ? 'Exibir Tarefas Concluídas' : 'Ocultar Tarefas Concluídas' }}** que estava com a ordem dos textos trocada. Inverti e o problema foi resolvido.
 5.  **O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas:** Mesma explicação e solução do problema anterior.
+6.  **Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário** Essa questão foi resolvida ao colocar o trecho **if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?'))** para poder fazer a confirmação do método **clearCompletedTasks()**.
 
 
 ---
