@@ -34,9 +34,9 @@ Após isso, os erros iniciais foram todos **resolvidos.**
 
 ## 4. Relatório de Correção de Bugs:
 
-Para configurar o ambiente, siga os passos:
+Nessa sessão listo os Bugs, e o que foi necessário para resolve-los:
 
-1.  **Diagnosticar e corrigir os erros** que atualmente impedem a aplicação de iniciar com o comando `npm start`.
+1.  **Ao clicar no botão “Salvar”, a tarefa está sendo adicionada duas vezes:** Esse problema foi ocasionado porque o médodo **addTask()** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
 2.  **Implementar todas as correções e melhorias** detalhadas na lista de requisitos técnicos abaixo.
 3.  **Entregar o projeto final** seguindo as instruções de entrega.
 
