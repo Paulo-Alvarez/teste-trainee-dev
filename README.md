@@ -1,6 +1,6 @@
-# Desafio de Código: Gerenciador de Tarefas (Angular)
+# Relatório Técnico - Paulo Alvarez
 
-## 1. Visão Geral do Projeto
+## 1. Visão Geral da Solução:
 
 Bem-vindo(a) ao nosso desafio de código!
 
@@ -8,36 +8,37 @@ Este repositório contém o código-fonte de uma aplicação de gerenciamento de
 
 ---
 
-## 2. O Cenário
+## 2. Como Executar a Aplicação:
 
 A empresa IMTS Group precisa de uma aplicação funcional para que seus colaboradores gerenciem suas tarefas. O projeto foi entregue com uma série de problemas que impedem até mesmo sua inicialização, além de falhas de funcionalidade e usabilidade identificadas por um analista de qualidade (QA).
 
 ---
 
-## 3. Sua Missão
+## 3. Correção dos Erros Iniciais (npm start):
 
-Sua missão é assumir este projeto e transformá-lo em uma aplicação robusta e funcional. Você deverá:
-1.  **Diagnosticar e corrigir os erros** que atualmente impedem a aplicação de iniciar com o comando `npm start`.
-2.  **Implementar todas as correções e melhorias** detalhadas na lista de requisitos técnicos abaixo.
-3.  **Entregar o projeto final** seguindo as instruções de entrega.
+Após dar o comando de **npm start** no meu terminal, foi percebido um erro que indicava que o **script "start" não havia sido definido no meu arquivo package.json.**
+
+E realmente, ao usar o comando **npm run** não foi indicado o script "start" no arquivo. Para resolver esse problema, fui até o meu arquivo package.json e **inclui o script "start": "ng serve"** na sessão **"scripts"**
+
+Após isso, a aplicação ficou diponível na rota http://localhost:4200/ mas apareceu uma mensagem de **Cannot GET /** ao abrir.
+
+Logo, comecei a investigar o que poderia estar causando isso. Identifiquei que no arquivo **header.components.ts** estava faltando a letra **r** nessa linha de código: **export class HeadeComponent implements OnInit.**
+
+Outro problema que estava impedindo o programa de compilar era que faltava a importação do **TodoService** no arquivo **meu new-task.component.ts**, adicionei **import { TodoService } from '../../shared/services/todo.service';** para mitigar esse problema. *Aqui também já verifiquei a duplicação de this.todoService.addTodo(newTodo), mas optei por corrigir esse bug na próxima etapa*.
+
+Por fim, também foi necessário instalar o FontAwesome no terminal porque seus ícones estão sendo usados no projeto.
+
+Após isso, os erros iniciais foram todos **resolvidos.**
 
 ---
 
-## 4. Como Começar
+## 4. Relatório de Correção de Bugs:
 
 Para configurar o ambiente, siga os passos:
 
-1.  **Clone o repositório** para sua máquina local.
-2.  **Instale as dependências** do projeto:
-    ```bash
-    npm install
-    ```
-3.  **Tente iniciar o servidor** de desenvolvimento:
-    ```bash
-    npm start
-    ```
-
-> **Atenção:** A aplicação não irá iniciar corretamente. Seu primeiro desafio é investigar e consertar os erros que impedem a execução bem-sucedida deste comando.
+1.  **Diagnosticar e corrigir os erros** que atualmente impedem a aplicação de iniciar com o comando `npm start`.
+2.  **Implementar todas as correções e melhorias** detalhadas na lista de requisitos técnicos abaixo.
+3.  **Entregar o projeto final** seguindo as instruções de entrega.
 
 ---
 
