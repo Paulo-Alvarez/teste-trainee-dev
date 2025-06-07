@@ -11,6 +11,9 @@ export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   showCompletedTasks: boolean = true;
 
+  todoEditando: Todo | null = null;
+  tituloInput: string = '';
+
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
@@ -31,14 +34,17 @@ export class TodoComponent implements OnInit {
     };
 
     this.todoService.addTodo(newTodo);
+    this.loadTodos();
   }
 
   updateTodo(updatedTodo: Todo) {
     this.todoService.updateTodo(updatedTodo);
+    this.loadTodos();
   }
 
   deleteTodo(todoId: number) {
     this.todoService.deleteTodo(todoId);
+    this.loadTodos();
   }
 
   clearAll() {
@@ -49,11 +55,11 @@ export class TodoComponent implements OnInit {
   }
 
   clearCompletedTasks() {
-  if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?')) {
-    this.todoService.clearCompletedTasks();
-    this.loadTodos();
+    if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?')) {
+      this.todoService.clearCompletedTasks();
+      this.loadTodos();
+    }
   }
-}
 
   toggleCompletedTasks() {
     this.showCompletedTasks = !this.showCompletedTasks;
@@ -67,5 +73,25 @@ export class TodoComponent implements OnInit {
 
   get labelClearAll(){
     return 'Limpar Todas as Tarefas'
+  }
+
+  editarTodo(todo: Todo) {
+    this.todoEditando = todo;
+    this.tituloInput = todo.title;
+  }
+
+  salvarTodo() {
+    const titulo = this.tituloInput.trim();
+    if (!titulo) return; 
+
+    if (this.todoEditando) {
+      const updatedTodo = { ...this.todoEditando, title: titulo };
+      this.updateTodo(updatedTodo);
+      this.todoEditando = null;
+    } else {
+      this.addTodo(titulo);
+    }
+
+    this.tituloInput = '';
   }
 }

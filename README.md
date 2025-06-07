@@ -43,6 +43,7 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 5.  **O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas:** Mesma explicação e solução do problema anterior.
 6.  **Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário** Essa questão foi resolvida ao colocar o trecho **if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?'))** para poder fazer a confirmação da função **clearCompletedTasks()** que está no arquivo **todo.components.ts**.
 7.  **O botão “Limpar Tarefas Concluídas” está removendo as tarefas não concluídas em vez das concluídas:** Esse problema se encontrava no arquivo **todo.service.ts** e ocorria porque a função **clearCompletedTasks()** continha o trecho **this.todos = this.todos.filter(({ completed }) => completed === true);** que estava mantendo as tarefas concluídas invés de remover. Foi corrigido ao inverter para false.
+8.  **O botão “Editar” não está funcional:** Esse problema se encontrava nos arquivos **todo-item.component.ts** e **todo-item.component.html**. Ocorreu porque o botão Editar não disparava nenhuma ação ao ser clicado. Foi corrigido ao criar o método editar() no TypeScript que emite o evento editTodo, e ao associar esse método ao botão no HTML com (click)="editar()".
 
 
 ---
