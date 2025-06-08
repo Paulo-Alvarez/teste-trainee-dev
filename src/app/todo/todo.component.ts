@@ -81,19 +81,28 @@ export class TodoComponent implements OnInit {
   }
 
   salvarTodo() {
-    const titulo = this.tituloInput.trim();
-    if (!titulo) return;
+  const titulos = this.tituloInput.split('|').map(t => t.trim()).filter(t => t);
 
-    if (this.todoEditando) {
-      const updatedTodo = { ...this.todoEditando, title: titulo };
+  if (this.todoEditando) {
+    if (titulos.length > 0) {
+      const updatedTodo = { ...this.todoEditando, title: titulos[0] };
       this.updateTodo(updatedTodo);
-      this.todoEditando = null;
-    } else {
-      this.addTodo(titulo);
     }
-
-    this.tituloInput = '';
+    this.todoEditando = null;
+  } else {
+    titulos.forEach(titulo => {
+      const newTodo: Todo = {
+        id: this.todos.length + 1,
+        title: titulo,
+        completed: false
+      };
+      this.todoService.addTodo(newTodo);
+    });
   }
+
+  this.tituloInput = '';
+  this.loadTodos();
+}
 
   ordenarPorTituloAZ(): void {
     this.todos = this.todos.sort((a, b) =>
