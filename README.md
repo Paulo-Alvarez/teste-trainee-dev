@@ -2,15 +2,51 @@
 
 ## 1. Visão Geral da Solução:
 
-Bem-vindo(a) ao nosso desafio de código!
+Este projeto teve como objetivo **recuperar e aprimorar uma aplicação web de gerenciamento de tarefas desenvolvida em Angular**, que inicialmente se encontrava em um estado incompleto e apresentava problemas de funcionamento.
 
-Este repositório contém o código-fonte de uma aplicação de gerenciamento de tarefas desenvolvida em Angular. O projeto foi iniciado por um fornecedor anterior, mas foi entregue incompleto, instável e com diversos bugs.
+O **primeiro passo** foi garantir que o ambiente de desenvolvimento estivesse funcional. Para isso, foram feitas **correções em arquivos de configuração, ajustes em nomes de componentes, importações ausentes e instalações de dependências necessárias** para que a aplicação pudesse ser **executada corretamente**.
+
+Com o ambiente estabilizado, iniciou-se a **etapa de correção dos erros existentes**. Foram identificados e resolvidos diversos bugs que comprometiam a experiência do usuário, como falhas ao adicionar novas tarefas, problemas nos botões de ação (como editar, excluir e limpar), comportamentos invertidos em funcionalidades de exibição e a ausência de validações básicas nos formulários. Algumas dessas correções também envolveram ajustes visuais e de estilo para tornar a interface mais coerente e acessível.
+
+Além das correções, a aplicação passou por um processo de modernização com a adição de **novas funcionalidades**. Foram incorporados recursos como ordenação alfabética, atalho via tecla Enter, adição de múltiplas tarefas simultaneamente, exportação da lista para PDF, filtro de palavras impróprias e substituição dos alertas nativos por uma experiência mais elegante usando a biblioteca SweetAlert2.
+
+Durante todo o processo, foram adotadas **boas práticas de versionamento com Git e registro contínuo no README**, permitindo um controle claro das alterações e facilitando futuras manutenções.
+
+O resultado final é uma aplicação mais estável, intuitiva e equipada com funcionalidades que a tornam realmente útil no contexto de gerenciamento pessoal de tarefas.
 
 ---
 
 ## 2. Como Executar a Aplicação:
 
-A empresa IMTS Group precisa de uma aplicação funcional para que seus colaboradores gerenciem suas tarefas. O projeto foi entregue com uma série de problemas que impedem até mesmo sua inicialização, além de falhas de funcionalidade e usabilidade identificadas por um analista de qualidade (QA).
+Para rodar este projeto localmente em sua máquina, siga os passos abaixo:
+
+Primeiro, faça o clone do repositório com o seguinte comando:
+
+```bash
+git clone https://github.com/Paulo-Alvarez/teste-trainee-dev
+```
+
+Em seguida, entre na pasta do projeto:
+
+```bash
+cd teste-trainee-dev
+```
+
+Agora, instale todas as dependências necessárias:
+
+```bash
+    npm install
+    ```
+
+Com tudo pronto, inicie o servidor de desenvolvimento com:
+
+```bash
+npm start
+```
+
+Após isso, a aplicação estará acessível no seu navegador, através do endereço:
+
+http://localhost:4200/
 
 ---
 
@@ -84,40 +120,52 @@ Nesta seção, listo as melhorias implementadas e explico o que foi necessário 
 
 ## 6. Relatório de Débito Técnico:
 
-Ao finalizar todo o trabalho, você deve:
-
-1.  **Fazer o commit de cada item separadamente**, conforme detalhado na seção "Boas Práticas" abaixo. O histórico de commits é uma parte crucial da avaliação. 
-
-2.  **Substituir o conteúdo deste `README.md`** pelo seu relatório técnico final. O seu relatório deve conter as seguintes seções:
-
-    * **Relatório Técnico - [Seu Nome]**
-    * **1. Visão Geral da Solução:** Um breve resumo do que foi feito.
-    * **2. Como Executar a Aplicação:** Instruções claras para clonar, instalar e rodar o projeto (`npm install`, `npm start`).
-    * **3. Correção dos Erros Iniciais (`npm start`):** Descreva quais eram os erros que impediam a aplicação de rodar e como você os solucionou.
-    * **4. Relatório de Correção de Bugs:** Para cada bug da lista, explique a causa raiz e a solução que você implementou.
-    * **5. Relatório de Implementação de Melhorias:** Para cada melhoria, descreva sua abordagem técnica e quais bibliotecas foram utilizadas.
-    * **6. Relatório de Débito Técnico:** Para cada ítem da lista de bugs e melhorias que você não conseguiu resolver ou implementar, descreva quais foram as dificuldades que você enfrentou na qual fizerem com que você não tenha conseguido entregar.
-    * **7. Relatório de Melhorias:** Descreva quais melhorias (novas funcionalidades) você acha interessante que sejam implementadas para evoluir o sistema.
-    * **8. Decisões e Considerações:** (Opcional) Espaço para comentar qualquer decisão de arquitetura ou desafio interessante que você encontrou.
-    
+Todas as correções de bugs e melhorias planejadas foram implementadas com sucesso dentro do prazo estabelecido. Não houve itens pendentes ou dificuldades técnicas que tenham impedido a entrega completa das funcionalidades previstas.
 
 ---
 
 ## 7. Relatório de Melhorias:
 
-### Commits Atômicos
-Cada bug corrigido e cada melhoria implementada deve ser um commit individual no repositório. Suas mensagens de commit devem ser claras e descritivas (ex: `fix: corrige a duplicação de tarefas ao salvar` ou `feat: implementa a exportação para PDF`). Isso é fundamental para avaliarmos seu processo de desenvolvimento.
+Nesta seção, listo algumas sugestões de melhorias que poderiam ser implementadas para melhorar ainda mais a aplicação proposta: 
 
-### Uso de Inteligência Artificial
-O uso de ferramentas de Inteligência Artificial (como ChatGPT, GitHub Copilot, etc.) é permitido como um recurso de apoio. No entanto, o mais importante é que você **entenda profundamente** o código e as soluções que está entregando. Esteja preparado(a) para explicar suas escolhas e defender a lógica implementada no relatório e na entrevista técnica, pois o conhecimento da solução é de sua total responsabilidade.
+### Botão Marcar todas como concluídas
+Adição de botão que teria como funcionalidade marcar todas as tarefas como concluídas. Seria uma adição natural para a interface, e melhoraria a produtividade dos usuários.
+
+### Categorias ou etiquetas
+Dar a possibilidade do usuário etiquetar que tipo de tarefa está sendo adicionada (ex: pessoal, trabalho, estudo, etc), de modo a potencializar a sua organização.
+
+### Filtrar por Categorias
+Além disso, seria interessante existir uma maneira de filtrar as tarefas pelas categorias que o usuário selecionou para as suas atividades.
+
+### Data e Hora Limite
+Dar a possibilidade do usuário estipular dia e hora limite para que aquela tarefa seja concluída, de modo que ele tenha um lembrete visual do prazo.
+
+### Ordenar por data e Hora Limite
+Do mesmo modo, seria interessante que o usuário pudesse ordernar as suas tarefas de acordo com o prazo final para que a aplização o ajude a dar prioridade para os projetos mais urgentes.
+
+### Nível de Prioridade
+Dar a possibilidade do usuário estipular o nível de prioridade daquela tarefa (ex: Prioridade, Muito Importante, Importante, Bônus, etc). Assim, o usuário poderia se guiar com base na prioridade de concluir deteminada tarefa.
+
+### Ordenar e/ou Filtrar por Nível de Prioridade
+Continuando a sugestão anterior, pode ser interessante implementar uma maneira do usuário poder ordenar por nível de prioridade (ex: mais urgentes primeiro) e também filtrar pelo nível desejado.
+
+### Login Simples
+Utilizar sistema de login e senha para que o usuário possa utilizar a sua aplicação de modo personalizado e privado.
+
+### Personalização da Interface
+Dar a possibilidade do usuáiro ter mais controle da interface que irá utilizar, como ajuste de temas e tamanho da letra).
+
+### Descrição adicional da tarefa
+Permitir que, além do título, o usuário escreva uma descrição mais detalhada.
 
 ---
 
 ## 8. Decisões e Considerações:
 
-Lembre-se que avaliaremos:
-* **Funcionalidade:** Cumprimento de todos os requisitos.
-* **Qualidade do Código:** Legibilidade, organização e boas práticas.
-* **Lógica e Eficiência:** Robustez das suas soluções.
-* **Comunicação:** Clareza do seu relatório técnico (`README.md`).
-* **Controle de Versão:** Qualidade e granularidade das suas mensagens de commit.
+Durante o desenvolvimento da aplicação, optei por seguir uma uma abordagem procedimental realizando os ajustes e implementações sugeridas uma a uma, conforme os bugs e melhorias listados no desafio. Essa abordagem me permitiu entender com clareza o impacto de cada mudança no funcionamento do sistema.
+
+Algumas correções foram feitas de forma antecipada, antes mesmo de serem solicitadas nas etapas posteriores. Isso aconteceu, por exemplo, no tratamento para evitar que tarefas com títulos vazios ou compostos apenas por espaços fossem adicionadas, e também na inclusão de uma barra de rolagem na lista de tarefas, garantindo a usabilidade mesmo quando há muitos itens.
+
+Além disso, busquei manter a organização do projeto ao longo do processo. Utilizei o Git de forma contínua para versionamento, criando commits a cada implementação ou correção importante, o que facilitou a rastreabilidade das alterações. Também mantive a documentação atualizada no arquivo README.md, registrando detalhes relevantes do desenvolvimento.
+
+Em relação à estrutura da aplicação, o projeto já utilizava o serviço TodoService para centralizar a lógica de manipulação de tarefas. Em alguns pontos, foi necessário apenas corrigir a ausência da importação desse serviço ou ajustar chamadas duplicadas para garantir consistência com a arquitetura original proposta.
