@@ -54,11 +54,11 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 
 ## 5. Melhorias a Implementar:
 
-Nessa seção, listo as melhorias e o que foi necessário para implementá-las:
+Nesta seção, listo as melhorias implementadas e explico o que foi necessário para realizá-las: 
 
-### 5.1. Bugs a Corrigir
+1.  **Implementar um botão “Ordenar de A a Z”:** Para implementar esse botão, foi adicionado um novo botão no arquivo **todo.component.html**, utilizando o mesmo padrão visual dos demais botões já existentes na interface. Em seguida, foi criada uma função no arquivo **todo.component.ts** chamada ordenarPorTituloAZ. Essa função utiliza o método **sort** para ordenar a lista de tarefas com base no título de cada uma, ignorando diferenças entre letras maiúsculas e minúsculas.
 
-1.  **Implementar um botão “Ordenar de A a Z”:** 
+
 
 ### 5.2. Melhorias a Implementar
 

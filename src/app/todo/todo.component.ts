@@ -82,7 +82,7 @@ export class TodoComponent implements OnInit {
 
   salvarTodo() {
     const titulo = this.tituloInput.trim();
-    if (!titulo) return; 
+    if (!titulo) return;
 
     if (this.todoEditando) {
       const updatedTodo = { ...this.todoEditando, title: titulo };
@@ -93,5 +93,11 @@ export class TodoComponent implements OnInit {
     }
 
     this.tituloInput = '';
+  }
+
+  ordenarPorTituloAZ(): void {
+    this.todos = this.todos.sort((a, b) =>
+      a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+    );
   }
 }
