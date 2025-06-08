@@ -35,8 +35,8 @@ cd teste-trainee-dev
 Agora, instale todas as dependências necessárias:
 
 ```bash
-    npm install
-    ```
+npm install
+```
 
 Com tudo pronto, inicie o servidor de desenvolvimento com:
 
