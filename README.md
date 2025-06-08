@@ -78,18 +78,11 @@ Nesta seção, listo as melhorias implementadas e explico o que foi necessário 
 
 5.  **Adicionar a funcionalidade de exportar a lista de tarefas atual para um arquivo PDF:** para implementar essa funcionalidade, foi instalada a biblioteca jsPDF via npm e importada no arquivo **todo.component.ts**. Em seguida, foi criada a função **exportarParaPDF()**, que gera um documento PDF contendo a lista atual de tarefas, incluindo seu status (concluída ou não). Essa função utiliza métodos do jsPDF para formatar e salvar o arquivo PDF. Por fim, foi adicionado um botão no arquivo **todo.component.html** que dispara a função ao ser clicado.
 
-### 5.2. Melhorias a Implementar
-
-1.  Implementar um botão “Ordenar de A a Z” que, ao ser clicado, ordene alfabeticamente a lista de tarefas visíveis.
-2.  Permitir que o usuário adicione uma tarefa pressionando a tecla `Enter` no campo de texto, além do clique no botão “Salvar”.
-3.  Permitir a adição de múltiplas tarefas de uma só vez. O usuário deverá digitar os títulos separados pelo caractere `|` (pipe).
-4.  Implementar um filtro de palavras obscenas. Caso o usuário tente cadastrar uma tarefa contendo um palavrão, exiba a mensagem: “Não é permitido cadastrar tarefas com palavras obscenas.” (Sugestão de biblioteca: `https://github.com/web-mech/badwords`).
-5.  Adicionar a funcionalidade de exportar a lista de tarefas atual para um arquivo PDF. (Sugestão de biblioteca: `https://github.com/parallax/jsPDF`).
-6.  Substituir todos os `alert`s e `confirm`s nativos do navegador por uma experiência mais moderna, utilizando a biblioteca SweetAlert. (Sugestão: `https://sweetalert2.github.io/`).
+6.  **Substituir todos os alerts e confirms nativos do navegador por uma experiência mais moderna, utilizando a biblioteca SweetAlert:** Foi instalada a biblioteca SweetAlert2 via npm e importada no arquivo **todo.component.ts** e **todo-item.component.ts**. Em seguida, todos os alert() e confirm() nativos do navegador foram substituídos por chamadas aos métodos da SweetAlert, como Swal.fire().
 
 ---
 
-## 6. Instruções de Entrega
+## 6. Relatório de Débito Técnico:
 
 Ao finalizar todo o trabalho, você deve:
 
@@ -110,7 +103,7 @@ Ao finalizar todo o trabalho, você deve:
 
 ---
 
-## 7. Boas Práticas e Uso de Ferramentas
+## 7. Relatório de Melhorias:
 
 ### Commits Atômicos
 Cada bug corrigido e cada melhoria implementada deve ser um commit individual no repositório. Suas mensagens de commit devem ser claras e descritivas (ex: `fix: corrige a duplicação de tarefas ao salvar` ou `feat: implementa a exportação para PDF`). Isso é fundamental para avaliarmos seu processo de desenvolvimento.
@@ -120,7 +113,7 @@ O uso de ferramentas de Inteligência Artificial (como ChatGPT, GitHub Copilot, 
 
 ---
 
-## 8. Critérios de Avaliação
+## 8. Decisões e Considerações:
 
 Lembre-se que avaliaremos:
 * **Funcionalidade:** Cumprimento de todos os requisitos.
@@ -128,13 +121,3 @@ Lembre-se que avaliaremos:
 * **Lógica e Eficiência:** Robustez das suas soluções.
 * **Comunicação:** Clareza do seu relatório técnico (`README.md`).
 * **Controle de Versão:** Qualidade e granularidade das suas mensagens de commit.
-
----
-
-## 9. Uma Palavra Final
-
-Entendemos que desafios como este podem ser complexos. Se você não conseguir concluir 100% dos itens, não desanime! Entregue o máximo que conseguir e documente seu progresso.
-
-Para nós, a jornada é tão importante quanto o destino. Não estamos buscando um profissional que saiba tudo, mas sim alguém com vontade de aprender, evoluir e que entenda que os erros são parte fundamental do crescimento.
-
-**Boa sorte!**

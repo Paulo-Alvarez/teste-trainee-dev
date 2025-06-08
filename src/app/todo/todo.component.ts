@@ -3,6 +3,7 @@ import { Todo } from '../shared/models/todo.model';
 import { TodoService } from '../shared/services/todo.service';
 import { Filter } from 'bad-words';
 import { jsPDF } from "jspdf";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-todo',
@@ -11,12 +12,13 @@ import { jsPDF } from "jspdf";
 })
 export class TodoComponent implements OnInit {
   todos: Todo[] = [];
+  filtered: Todo[] = [];
   showCompletedTasks: boolean = true;
 
   todoEditando: Todo | null = null;
   tituloInput: string = '';
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
     this.loadTodos();
@@ -25,12 +27,19 @@ export class TodoComponent implements OnInit {
   loadTodos() {
     this.todoService.getTodos().subscribe(todos => {
       this.todos = todos;
+      this.applyFilter();
     });
+  }
+
+  applyFilter() {
+    this.filtered = this.showCompletedTasks
+      ? this.todos
+      : this.todos.filter(todo => !todo.completed);
   }
 
   addTodo(newTodoTitle: string) {
     const newTodo: Todo = {
-      id: this.todos.length + 1,
+      id: Date.now() + Math.floor(Math.random() * 1000),
       title: newTodoTitle,
       completed: false
     };
@@ -45,32 +54,59 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTodo(todoId: number) {
-    this.todoService.deleteTodo(todoId);
-    this.loadTodos();
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Deseja excluir esta tarefa?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.todoService.deleteTodo(todoId);
+        this.loadTodos();
+        Swal.fire('Excluído!', 'A tarefa foi removida.', 'success');
+      }
+    });
   }
 
   clearAll() {
-    if (this.todos.length > 0 && confirm('Are you sure you want to clear all tasks?')) {
-      this.todoService.clearAll();
-      this.loadTodos();
-    }
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Deseja limpar todas as tarefas? Esta ação não poderá ser desfeita.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, limpar tudo!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.todoService.clearAll();
+        this.loadTodos();
+        Swal.fire('Concluído!', 'Todas as tarefas foram removidas.', 'success');
+      }
+    });
   }
 
   clearCompletedTasks() {
-    if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?')) {
-      this.todoService.clearCompletedTasks();
-      this.loadTodos();
-    }
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Deseja limpar as tarefas concluídas?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, limpar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.todoService.clearCompletedTasks();
+        this.loadTodos();
+        Swal.fire('Concluído!', 'As tarefas concluídas foram limpas.', 'success');
+      }
+    });
   }
 
   toggleCompletedTasks() {
     this.showCompletedTasks = !this.showCompletedTasks;
-    this.loadTodos();
-    this.todos = this.filteredTodos();
-  }
-
-  filteredTodos() {
-    return this.showCompletedTasks ? this.todos : this.todos.filter(todo => !todo.completed);
+    this.applyFilter();
   }
 
   get labelClearAll() {
@@ -92,7 +128,11 @@ export class TodoComponent implements OnInit {
 
     const contemPalavraObscena = titulos.some(titulo => filtro.isProfane(titulo));
     if (contemPalavraObscena) {
-      alert('Não é permitido cadastrar tarefas com palavras obscenas.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Não é permitido cadastrar tarefas com palavras obscenas.'
+      });
       return;
     }
 
@@ -105,7 +145,7 @@ export class TodoComponent implements OnInit {
     } else {
       titulos.forEach(titulo => {
         const newTodo: Todo = {
-          id: this.todos.length + 1,
+          id: Date.now() + Math.floor(Math.random() * 1000),
           title: titulo,
           completed: false
         };
@@ -121,20 +161,25 @@ export class TodoComponent implements OnInit {
     this.todos = this.todos.sort((a, b) =>
       a.title.toLowerCase().localeCompare(b.title.toLowerCase())
     );
+    this.applyFilter();
   }
 
   exportarParaPDF(): void {
-  const doc = new jsPDF();
-  doc.setFontSize(16);
-  doc.text("Lista de Tarefas", 10, 10);
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("Lista de Tarefas", 10, 10);
 
-  let yPos = 20;
-  this.todos.forEach((todo, index) => {
-    const status = todo.completed ? "[x]" : "[ ]";
-    doc.text(`${index + 1}. ${status} ${todo.title}`, 10, yPos);
-    yPos += 10;
-  });
+    let yPos = 20;
+    this.todos.forEach((todo, index) => {
+      const status = todo.completed ? "[x]" : "[ ]";
+      doc.text(`${index + 1}. ${status} ${todo.title}`, 10, yPos);
+      yPos += 10;
+    });
 
-  doc.save("tarefas.pdf");
-}
+    doc.save("tarefas.pdf");
+  }
+
+  trackById(index: number, todo: Todo) {
+    return todo.id;
+  }
 }

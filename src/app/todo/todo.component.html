@@ -24,10 +24,11 @@
   <div class="todo-list_container">
     <div class="todo-list_todo">
       <app-todo-item
-        *ngFor="let todo of todos"
-        [todo]="todo"
-        (editTodo)="editarTodo($event)"
-      ></app-todo-item>
+  *ngFor="let todo of filtered; trackBy: trackById"
+  [todo]="todo"
+  (editTodo)="editarTodo($event)"
+></app-todo-item>
+
     </div>
   </div>
 </div>
