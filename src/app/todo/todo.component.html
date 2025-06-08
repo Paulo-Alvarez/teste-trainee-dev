@@ -3,6 +3,7 @@
     <input 
       type="text" 
       [(ngModel)]="tituloInput" 
+      (keyup.enter)="salvarTodo()"
       placeholder="Digite a tarefa"
     />
     <button (click)="salvarTodo()">
