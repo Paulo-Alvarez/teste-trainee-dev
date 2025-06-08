@@ -37,17 +37,29 @@ Após isso, os erros iniciais foram todos **resolvidos.**
 Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 
 1.  **Ao clicar no botão “Salvar”, a tarefa estava sendo adicionada duas vezes:** Esse problema ocorreu porque o método **addTask()** que está no arquivo **new-task.component.ts** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
+
 2.  **Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5):** Esse bug estava sendo ocasionado por causa do trecho **if (this.count > 0) return;** que estava impedindo que o botão funcionasse mais de uma vez. Além disso, retirei o trecho **count = 0;** que se tornou desnecessário e adicionei uma verificação para evitar a criação de tarefas com título vazio (**if (!this.newTaskTitle.trim()) return;**).
+
 3.  **O texto do botão de limpar todas as tarefas não está em português:** Esse problema estava no arquivo **todo.components.ts** e acontecia causa do trecho **return 'Clear All'** que estava na função **get labelClearAll()**. A solução foi simplesmente traduzir o trecho para o português.
+
 4.  **O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas:** A problemática estava no trecho **{{ showCompletedTasks ? 'Exibir Tarefas Concluídas' : 'Ocultar Tarefas Concluídas' }}** que estava com a ordem dos textos trocada. Inverti e o problema foi resolvido.
+
 5.  **O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas:** Mesma explicação e solução do problema anterior.
+
 6.  **Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário** Essa questão foi resolvida ao colocar o trecho **if (confirm('Tem certeza de que deseja limpar as tarefas concluídas?'))** para poder fazer a confirmação da função **clearCompletedTasks()** que está no arquivo **todo.components.ts**.
+
 7.  **O botão “Limpar Tarefas Concluídas” está removendo as tarefas não concluídas em vez das concluídas:** Esse problema se encontrava no arquivo **todo.service.ts** e ocorria porque a função **clearCompletedTasks()** continha o trecho **this.todos = this.todos.filter(({ completed }) => completed === true);** que estava mantendo as tarefas concluídas invés de remover. Foi corrigido ao inverter para false.
+
 8.  **O botão “Editar” não está funcional:** Esse problema se encontrava nos arquivos **todo-item.component.ts** e **todo-item.component.html**. Ocorreu porque o botão Editar não disparava nenhuma ação ao ser clicado. Foi corrigido ao criar o método editar() no TypeScript que emite o evento editTodo, e ao associar esse método ao botão no HTML com (click)="editar()".
+
 9.  **O botão “Editar” está desalinhado e deve ser posicionado ao lado do botão “Remover”:** Esse problema se encontrava no arquivo **todo-item.component.css** e ocorria porque os botões “Editar” e “Remover” não estavam agrupados e alinhados corretamente. Foi corrigido ao aplicar **display: flex, align-items: center e justify-content: space-between** no container **.todo-item**.
+
 10.  **O botão “Remover” deve ter a cor vermelha para indicar uma ação destrutiva:** Esse erro se apresentava por conta do arquivo **todo-item.component.html** que em seu código determinava que a cor da classe **todo-item_delete** deveria ser preto. Alterei para vermelho e funcionou.
+
 11.  **A lista de tarefas não apresenta uma barra de rolagem quando o número de itens ultrapassa a altura do painel, impedindo a visualização de todas as tarefas:** Problema havia sido solucionado anteriormente. Foi necessário colocar o trecho **overflow-y: auto;** na classe **.todo-list_container** que está no arquivo **todo.component.css**.
+
 12.  **Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista:** Também já havia resolvido essa questão anteriormente ao adicionar uma verificação para evitar a criação de tarefas com título vazio ou com apenas espaços (**if (!this.newTaskTitle.trim()) return;**).
+
 13.  **Digitar apenas espaços no campo “Título da Tarefa” e salvar também está adicionando um item em branco:** Mesma explicação e solução do problema anterior.
 
 ---
@@ -57,9 +69,12 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 Nesta seção, listo as melhorias implementadas e explico o que foi necessário para realizá-las: 
 
 1.  **Implementar um botão “Ordenar de A a Z”:** Para implementar esse botão, foi adicionado um novo botão no arquivo **todo.component.html**, utilizando o mesmo padrão visual dos demais botões já existentes na interface. Em seguida, foi criada uma função no arquivo **todo.component.ts** chamada ordenarPorTituloAZ. Essa função utiliza o método **sort** para ordenar a lista de tarefas com base no título de cada uma, ignorando diferenças entre letras maiúsculas e minúsculas.
+
 2.  **Permitir que o usuário adicione uma tarefa pressionando a tecla Enter no campo de texto:** Para garantir esse comportamento, foi adicionado o evento **(keyup.enter)** ao campo de entrada de texto no arquivo **todo.component.html**. Esse evento chama a função **salvarTodo()**, que já era utilizada pelo botão "Salvar", garantindo que ambas as formas de interação executem a mesma lógica.
+
 3.  **Permitir a adição de múltiplas tarefas de uma só vez:** Para permitir que o usuário adicione várias tarefas em uma única ação, foi ajustada a função **salvarTodo()** no arquivo **todo.component.ts**. Agora, o campo de entrada aceita múltiplos títulos separados pelo caractere |. Para fazer isso foi utilizado a **manipulação de strings com split('|') e trim()**, a **Validação com filter(t => t)** para remover itens vazios e a Estrutura de repetição com **forEach()**.
 
+4.  **Implementar um filtro de palavras obscenas:** foi integrada a biblioteca bad-words ao projeto. Após instalar a biblioteca via npm e importar o filtro no arquivo **todo.component.ts**, foi criada uma instância do filtro para verificar os títulos das tarefas antes de adicioná-las. Na função **salvarTodo()**, cada título digitado é checado com o método **isProfane()** do filtro. No momento, as palavras proibidas são somente na língua inglesa, mas em uma futura versão é possível ampliar para diferentes idiomas.
 
 ### 5.2. Melhorias a Implementar
 

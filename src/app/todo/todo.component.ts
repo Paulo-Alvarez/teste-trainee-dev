@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../shared/models/todo.model';
 import { TodoService } from '../shared/services/todo.service';
+import { Filter } from 'bad-words';
 
 @Component({
   selector: 'app-todo',
@@ -71,8 +72,8 @@ export class TodoComponent implements OnInit {
     return this.showCompletedTasks ? this.todos : this.todos.filter(todo => !todo.completed);
   }
 
-  get labelClearAll(){
-    return 'Limpar Todas as Tarefas'
+  get labelClearAll() {
+    return 'Limpar Todas as Tarefas';
   }
 
   editarTodo(todo: Todo) {
@@ -81,28 +82,39 @@ export class TodoComponent implements OnInit {
   }
 
   salvarTodo() {
-  const titulos = this.tituloInput.split('|').map(t => t.trim()).filter(t => t);
+    const filtro = new Filter();
 
-  if (this.todoEditando) {
-    if (titulos.length > 0) {
-      const updatedTodo = { ...this.todoEditando, title: titulos[0] };
-      this.updateTodo(updatedTodo);
+    const titulos = this.tituloInput
+      .split('|')
+      .map(t => t.trim())
+      .filter(t => t);
+
+    const contemPalavraObscena = titulos.some(titulo => filtro.isProfane(titulo));
+    if (contemPalavraObscena) {
+      alert('Não é permitido cadastrar tarefas com palavras obscenas.');
+      return;
     }
-    this.todoEditando = null;
-  } else {
-    titulos.forEach(titulo => {
-      const newTodo: Todo = {
-        id: this.todos.length + 1,
-        title: titulo,
-        completed: false
-      };
-      this.todoService.addTodo(newTodo);
-    });
-  }
 
-  this.tituloInput = '';
-  this.loadTodos();
-}
+    if (this.todoEditando) {
+      if (titulos.length > 0) {
+        const updatedTodo = { ...this.todoEditando, title: titulos[0] };
+        this.updateTodo(updatedTodo);
+      }
+      this.todoEditando = null;
+    } else {
+      titulos.forEach(titulo => {
+        const newTodo: Todo = {
+          id: this.todos.length + 1,
+          title: titulo,
+          completed: false
+        };
+        this.todoService.addTodo(newTodo);
+      });
+    }
+
+    this.tituloInput = '';
+    this.loadTodos();
+  }
 
   ordenarPorTituloAZ(): void {
     this.todos = this.todos.sort((a, b) =>
