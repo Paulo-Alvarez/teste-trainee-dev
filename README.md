@@ -36,7 +36,7 @@ Após isso, os erros iniciais foram todos **resolvidos.**
 
 Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 
-1.  **Ao clicar no botão “Salvar”, a tarefa estava sendo adicionada duas vezes** Esse problema ocorreu porque o método **addTask()** que está no arquivo **new-task.component.ts** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
+1.  **Ao clicar no botão “Salvar”, a tarefa estava sendo adicionada duas vezes:** Esse problema ocorreu porque o método **addTask()** que está no arquivo **new-task.component.ts** continha o trecho **this.todoService.addTodo(newTodo);** duplicado. Corrigi isso e o problema foi resolvido.
 2.  **Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5):** Esse bug estava sendo ocasionado por causa do trecho **if (this.count > 0) return;** que estava impedindo que o botão funcionasse mais de uma vez. Além disso, retirei o trecho **count = 0;** que se tornou desnecessário e adicionei uma verificação para evitar a criação de tarefas com título vazio (**if (!this.newTaskTitle.trim()) return;**).
 3.  **O texto do botão de limpar todas as tarefas não está em português:** Esse problema estava no arquivo **todo.components.ts** e acontecia causa do trecho **return 'Clear All'** que estava na função **get labelClearAll()**. A solução foi simplesmente traduzir o trecho para o português.
 4.  **O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas:** A problemática estava no trecho **{{ showCompletedTasks ? 'Exibir Tarefas Concluídas' : 'Ocultar Tarefas Concluídas' }}** que estava com a ordem dos textos trocada. Inverti e o problema foi resolvido.
@@ -52,25 +52,13 @@ Nessa seção, listo os bugs e o que foi necessário para resolvê-los:
 
 ---
 
-## 5. Requisitos Técnicos (Lista de Tarefas do QA)
+## 5. Melhorias a Implementar:
 
-A seguir estão os pontos exatos que você deve abordar.
+Nessa seção, listo as melhorias e o que foi necessário para implementá-las:
 
 ### 5.1. Bugs a Corrigir
 
-1.  Ao clicar no botão “Salvar”, a tarefa está sendo adicionada duas vezes.
-2.  Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5)
-3.  O texto do botão de limpar todas as tarefas não está em português.
-4.  O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas.
-5.  O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas.
-6.  Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário.
-7.  O botão “Limpar Tarefas Concluídas” está removendo as tarefas não concluídas em vez das concluídas.
-8.  O botão “Editar” não está funcional. O comportamento esperado é: ao clicar, o campo “Título da Tarefa” deve ser preenchido com o texto da tarefa selecionada. Ao salvar, o item na lista deve ser atualizado e o campo de texto limpo.
-9.  O botão “Editar” está desalinhado e deve ser posicionado ao lado do botão “Remover”.
-10.  O botão “Remover” deve ter a cor vermelha para indicar uma ação destrutiva.
-11. A lista de tarefas não apresenta uma barra de rolagem quando o número de itens ultrapassa a altura do painel, impedindo a visualização de todas as tarefas.
-12. Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista.
-13. Digitar apenas espaços no campo “Título da Tarefa” e salvar também está adicionando um item em branco.
+1.  **Implementar um botão “Ordenar de A a Z”:** 
 
 ### 5.2. Melhorias a Implementar
 
