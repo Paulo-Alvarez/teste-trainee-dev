@@ -76,6 +76,8 @@ Nesta seção, listo as melhorias implementadas e explico o que foi necessário 
 
 4.  **Implementar um filtro de palavras obscenas:** foi integrada a biblioteca bad-words ao projeto. Após instalar a biblioteca via npm e importar o filtro no arquivo **todo.component.ts**, foi criada uma instância do filtro para verificar os títulos das tarefas antes de adicioná-las. Na função **salvarTodo()**, cada título digitado é checado com o método **isProfane()** do filtro. No momento, as palavras proibidas são somente na língua inglesa, mas em uma futura versão é possível ampliar para diferentes idiomas.
 
+5.  **Adicionar a funcionalidade de exportar a lista de tarefas atual para um arquivo PDF:** para implementar essa funcionalidade, foi instalada a biblioteca jsPDF via npm e importada no arquivo **todo.component.ts**. Em seguida, foi criada a função **exportarParaPDF()**, que gera um documento PDF contendo a lista atual de tarefas, incluindo seu status (concluída ou não). Essa função utiliza métodos do jsPDF para formatar e salvar o arquivo PDF. Por fim, foi adicionado um botão no arquivo **todo.component.html** que dispara a função ao ser clicado.
+
 ### 5.2. Melhorias a Implementar
 
 1.  Implementar um botão “Ordenar de A a Z” que, ao ser clicado, ordene alfabeticamente a lista de tarefas visíveis.
